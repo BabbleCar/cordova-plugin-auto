@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-auto" version="1.0" xmlns:android="http://schemas.android.com/apk/res/android" >
+    <name>Android Auto</name>
+    <description>Auto</description>
+    <keywords>cordova,plugin,auto</keywords>
+
+    <js-module src="www/plugin.js" name="Auto">
+        <clobbers target="cordova.plugins.Auto" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Auto" >
+                <param name="android-package" value="com.tnc.auto.MainCar"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data android:name="com.google.android.gms.car.application"
+                android:resource="@xml/automotive_app_desc"/>
+        </config-file>
+
+        <framework custom="true" src="src/android/auto-sdk.gradle" type="gradleReference" />
+        <resource-file src="src/android/res/xml/automotive_app_desc.xml" target="res/xml/automotive_app_desc.xml" />
+
+        <source-file src="src/android/com/tnc/auto/MainCar.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/MessageReplyReceiver.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/MessageReadReceiver.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/MySQLite.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/TncFirebase.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/NotifCar.java" target-dir="src/com/tnc/auto"/>
+        <source-file src="src/android/com/tnc/auto/Api.java" target-dir="src/com/tnc/auto"/>
+
+    </platform>
+</plugin>
+
