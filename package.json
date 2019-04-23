@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-auto",
   "version": "1.0.0",
-  "description": "Auto",
+  "description": "Cordova plugin for Android Auto Notification - custom plugin for the tancar application - to take as an example",
   "cordova": {
     "id": "cordova-plugin-auto",
     "platforms": [
@@ -16,5 +16,5 @@
     "cordova-android"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
