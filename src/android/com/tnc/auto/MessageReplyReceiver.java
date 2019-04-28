@@ -1,5 +1,6 @@
 package com.tnc.auto;
 
+import android.app.PendingIntent;
 import android.app.RemoteInput;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -83,7 +84,11 @@ public class MessageReplyReceiver extends BroadcastReceiver {
                         new NotifCar(context).cancelNotification(conversation_id);
                     }
                 } else {
-                    new NotifCar(context).cancelNotification(conversation_id);
+                    try {
+                        (new NotifCar(context.getApplicationContext())).getIntentOpenApp(params.getBundle("data")).send();
+                    } catch (PendingIntent.CanceledException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

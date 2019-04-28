@@ -77,7 +77,7 @@ public class NotifCar {
 
         //Build an Android N compatible Remote Input enabled action.
         NotificationCompat.Action actionReplyByRemoteInput = (new NotificationCompat.Action.Builder(
-                small_icon, "Répondre", replyIntent))
+                /*small_icon*/0, "Répondre", replyIntent))
                 .addRemoteInput(remoteInput)
                 .setAllowGeneratedReplies(true)
                 .build();
@@ -92,11 +92,6 @@ public class NotifCar {
                 mNotManager.createNotificationChannel(mChannel);
             }
         }
-
-        //Create an explicit intent for an Activity in your app
-        Intent intent = new Intent(context, OnNotificationOpenReceiver.class);
-        intent.putExtras(data);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         if(message_reply.length > 0) {
             List<String> list = Arrays.asList(message_reply);
@@ -121,7 +116,7 @@ public class NotifCar {
                 .setColor(Color.parseColor("#476b66"))
                 .setColorized(true)
                 .setContentTitle(title)
-                .setContentIntent(pendingIntent)
+                .setContentIntent(getIntentOpenApp(data))
                 .setCategory(Notification.CATEGORY_MESSAGE)
                 .setGroup("G"+conversation_id)
                 .setGroupSummary(true)
@@ -139,6 +134,13 @@ public class NotifCar {
 
     public void cancelNotification(int conversation_id) {
         NotificationManagerCompat.from(context).cancel(conversation_id);
+    }
+
+    public PendingIntent getIntentOpenApp(Bundle data) {
+        Intent intent = new Intent(context, OnNotificationOpenReceiver.class);
+        intent.putExtras(data);
+
+        return PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
 }

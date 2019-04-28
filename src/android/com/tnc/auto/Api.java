@@ -22,7 +22,6 @@ public class Api {
 
     private Context context;
     private String URL = "https://api.tagncar.com/";
-    //private String URL = "http://192.168.1.13:8080/";
 
     private static final String JSONRPC_PARAM_ID = "id";
     private static final String JSONRPC_PARAM_METHOD = "method";
